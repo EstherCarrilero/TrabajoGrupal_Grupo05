@@ -26,5 +26,9 @@ public class Main {
         System.out.println(hub1.toString());
         //hub1.desapilar(2);
         //System.out.println(hub1.toString());
+        System.out.println("Introduce el id del contenedor que desees");
+        int numID = sc.nextInt();
+        System.out.println(hub1.mostrarDatos(numID));
+
     }
 }

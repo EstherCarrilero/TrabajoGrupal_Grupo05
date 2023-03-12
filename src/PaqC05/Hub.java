@@ -79,6 +79,19 @@ public class Hub {
             }
         }
     }
+    public String mostrarDatos(int numID){
+        for(int i=0; i<10; i++){
+            for(int j=0; j<12; j++){
+                if(M[i][j]!=null){
+                    while(M[i][j].getId()==numID){
+                        return (" ID del contenedor: "+M[i][j].getId()+"\n Peso del contenedor:"+M[i][j].getPeso()+"\n Pais del contenedor:"+M[i][j].getPais()+"\n Inspeccionado en aduanas:"+M[i][j].getInspeccionado()+"\n Prioridad:"+M[i][j].getPrioridad()+"\n Descripcion del contenedor:"+M[i][j].getDescripcion()+"\n Empresa remitente:"+M[i][j].getEmpresaRemitente()+"\n Empresa receptora:"+M[i][j].getEmpresaReceptora());
+                    }
+                }
+            }
+        }
+        return "Este contenedor no se encuentra en el Hub";
+    }
+
     public int cont_pais(String pais){
         int total=0;
         for (int i = 0; i < 10; i++) {
