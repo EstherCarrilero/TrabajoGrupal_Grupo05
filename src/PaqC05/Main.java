@@ -26,5 +26,6 @@ public class Main {
         System.out.println(hub1.toString());
         //hub1.desapilar(2);
         //System.out.println(hub1.toString());
+        System.out.println(hub1.cont_pais("US"));
     }
 }
