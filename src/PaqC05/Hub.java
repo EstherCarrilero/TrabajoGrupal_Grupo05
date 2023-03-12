@@ -79,5 +79,18 @@ public class Hub {
             }
         }
     }
-
+    public int cont_pais(String pais){
+        int total=0;
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 12; j++) {
+                if (M[i][j]!=null) {
+                    if (M[i][j].getPais() == pais) {
+                        total = total + 1;
+                    }
+                }
+            }
+        }
+        return total;
+    }
 }
+
