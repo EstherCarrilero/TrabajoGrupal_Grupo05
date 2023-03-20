@@ -1,5 +1,7 @@
 package PaqC05;
 
+import java.util.Objects;
+
 public class Hub {
     private Contenedor[][] M;
 
@@ -36,7 +38,7 @@ public class Hub {
         }
         return cadena;
     }
-    public void apilar(Contenedor C){
+    public Contenedor[][] apilar(Contenedor C){
         int miprioridad=C.getPrioridad();
         int prioridad=0;
         //primera col de prioridad 1, segunda columna prioridad 2, el resto del tres
@@ -69,15 +71,16 @@ public class Hub {
                 }
             }
         }
-
+        return M;
     }
-    public void desapilar(int columna) {
+    public Contenedor[][] desapilar(int columna) {
         for(int i = 0; i < 10; i++){
             if(M[i][columna] != null){
                 M[i][columna] = null;
                 break;
             }
         }
+        return M;
     }
     public String mostrarDatos(int numID){
         for(int i=0; i<10; i++){
@@ -97,7 +100,7 @@ public class Hub {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 12; j++) {
                 if (M[i][j]!=null) {
-                    if (M[i][j].getPais() == pais) {
+                    if (Objects.equals(M[i][j].getPais(), pais)) {
                         total = total + 1;
                     }
                 }
