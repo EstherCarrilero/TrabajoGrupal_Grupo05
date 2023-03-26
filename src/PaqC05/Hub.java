@@ -4,9 +4,11 @@ import java.util.Objects;
 
 public class Hub {
     private Contenedor[][] M;
+    private int numHub;
 
-    Hub() {
+    Hub(int numHub) {
         M = new Contenedor[10][12];
+        this.numHub = numHub;
     }
 
     public Contenedor getM(int i, int j) {
@@ -15,6 +17,13 @@ public class Hub {
 
     public void setM(int i, int j, Contenedor c) {
         this.M[i][j] = c;
+    }
+
+    public int getNumHub() {
+        return numHub;
+    }
+    public void setNumHub(int numHub) {
+        this.numHub = numHub;
     }
 
     public String toString() {
@@ -40,7 +49,6 @@ public class Hub {
     }
     public Contenedor[][] apilar(Contenedor C){
         int miprioridad=C.getPrioridad();
-        int prioridad=0;
         //primera col de prioridad 1, segunda columna prioridad 2, el resto del tres
         if((miprioridad==1 && M[0][0]==null)||(miprioridad==2 && M[0][1]==null) || miprioridad==3) {
             if(miprioridad==1) {
@@ -86,7 +94,7 @@ public class Hub {
         for(int i=0; i<10; i++){
             for(int j=0; j<12; j++){
                 if(M[i][j]!=null){
-                    while(M[i][j].getId()==numID){
+                    if(M[i][j].getId()==numID){
                         return (" ID del contenedor: "+M[i][j].getId()+"\n Peso del contenedor:"+M[i][j].getPeso()+"\n Pais del contenedor:"+M[i][j].getPais()+"\n Inspeccionado en aduanas:"+M[i][j].getInspeccionado()+"\n Prioridad:"+M[i][j].getPrioridad()+"\n Descripcion del contenedor:"+M[i][j].getDescripcion()+"\n Empresa remitente:"+M[i][j].getEmpresaRemitente()+"\n Empresa receptora:"+M[i][j].getEmpresaReceptora());
                     }
                 }
