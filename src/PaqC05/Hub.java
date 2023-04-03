@@ -47,7 +47,7 @@ public class Hub {
         }
         return cadena;
     }
-    public Contenedor[][] apilar(Contenedor C){
+    public boolean apilar(Contenedor C){
         int miprioridad=C.getPrioridad();
         //primera col de prioridad 1, segunda columna prioridad 2, el resto del tres
         if((miprioridad==1 && M[0][0]==null)||(miprioridad==2 && M[0][1]==null) || miprioridad==3) {
@@ -56,7 +56,7 @@ public class Hub {
                 for (int i=9;i>=0;i--) {
                     if (M[i][0] == null) {
                         M[i][0] = C;
-                        break;
+                        return true;
                     }
                 }
             }else if(miprioridad==2){
@@ -64,7 +64,7 @@ public class Hub {
                 for (int i=9;i>=0;i--) {
                     if (M[i][1] == null) {
                         M[i][1] = C;
-                        break;
+                        return true;
                     }
                 }
             }else{
@@ -73,22 +73,22 @@ public class Hub {
                         if (M[j][i] == null) {
                             M[j][i] = C;
                             i = 11;
-                            break;
+                            return true;
                         }
                     }
                 }
             }
         }
-        return M;
+        return false;
     }
-    public Contenedor[][] desapilar(int columna) {
+    public boolean desapilar(int columna) {
         for(int i = 0; i < 10; i++){
             if(M[i][columna] != null){
                 M[i][columna] = null;
-                break;
+                return true;
             }
         }
-        return M;
+        return false;
     }
     public String mostrarDatos(int numID){
         for(int i=0; i<10; i++){
