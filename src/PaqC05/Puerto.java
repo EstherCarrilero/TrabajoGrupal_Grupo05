@@ -24,7 +24,7 @@ public class Puerto implements Cloneable{
         this.espacio[numEspacio] = bool;
     }
 
-    public void apilar(int numHub, Contenedor C){
+    public boolean apilar(int numHub, Contenedor C){
         for(int k = 0; k < P.length; k++){
             if(numHub == this.P[k].getNumHub()){
                 P[k].apilar(C);
@@ -32,22 +32,34 @@ public class Puerto implements Cloneable{
                     for(int p = 0; p < 3; p++){
                         if(P[p].getNumHub() == numHub){
                             espacio[p] = true;
+                            return true;
                         }
                     }
                 }
             }
             break;
         }
+        return false;
     }
 
+
     public Hub desapilar(int numHub, int columna) {
+        Hub eliminado;
         for(int k = 0; k < P.length; k++){
             if(numHub == this.P[k].getNumHub()){
+               eliminado=P[k];
                P[k].desapilar(columna);
                espacio[k] = false;
-               return P[k];
+               return eliminado;
             }
         }
         return null;
+    }
+    public int totalPaisPuerto(String pais){
+        int total=0;
+        for (int i=0;i<P.length;i++){
+            total+=P[i].cont_pais(pais);
+        }
+        return total;
     }
 }
