@@ -1,12 +1,15 @@
 package PaqC05;
 
-public class Puerto implements Cloneable{
+public class Puerto{
     private Hub[] P;
     private boolean[] espacio;
 
     Puerto(){
         P = new Hub [3];
         espacio = new boolean [3];
+        P[0] = new Hub();
+        P[1] = new Hub();
+        P[2] = new Hub();
     }
 
     public Hub getP(int numHub) {
@@ -24,28 +27,43 @@ public class Puerto implements Cloneable{
         this.espacio[numEspacio] = bool;
     }
 
-    public void apilar(int numHub, Contenedor C){
+    public boolean apilar(Contenedor C){
         for(int k = 0; k < P.length; k++){
-            if(numHub == this.P[k].getNumHub()){
-                P[k].apilar(C);
-                if((P[k].getM(0,0) != null) && (P[k].getM(0,1) != null) && (P[k].getM(0,11) != null)){
-                    for(int p = 0; p < 3; p++){
-                        if(P[p].getNumHub() == numHub){
-                            espacio[p] = true;
-                        }
-                    }
+            boolean resultado = P[k].apilar(C);
+            if(resultado) {
+                if ((P[k].getM(0, 0) != null) && (P[k].getM(0, 1) != null) && (P[k].getM(0, 11) != null)) {
+                    espacio[k] = true;
                 }
+                return true;
             }
-            break;
         }
+        return false;
     }
 
-    public Hub desapilar(int numHub, int columna) {
+    public boolean desapilar(int columna) {
         for(int k = 0; k < P.length; k++){
-            if(numHub == this.P[k].getNumHub()){
-               P[k].desapilar(columna);
-               espacio[k] = false;
-               return P[k];
+            boolean resultado = P[k].desapilar(columna);
+            if(resultado){
+                espacio[k] = false;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int totalPaisPuerto(String pais){
+        int total=0;
+        for (int i=0;i<P.length;i++){
+            total+=P[i].cont_pais(pais);
+        }
+        return total;
+    }
+
+    public Contenedor mostrarDatos_puerto(int numID){
+        for(int i=0; i<3; i++){
+            Contenedor datos = P[i].mostrarDatos(numID);
+            if(datos != null){
+                return datos;
             }
         }
         return null;

@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Hub hub1 = new Hub(1);
+        Hub hub1 = new Hub();
 
         //PRUEBA DE CLASE HUB
         Contenedor[] cont = new Contenedor[15];
@@ -39,14 +39,24 @@ public class Main {
         Puerto puerto1 = new Puerto();
         puerto1.setP(0, hub1);
 
-        puerto1.apilar(1, c1);
-        puerto1.desapilar(1, 0);
-        puerto1.apilar(1, c2);
-        puerto1.apilar(1, c3);
+        puerto1.apilar(c1);
+        puerto1.desapilar( 0);
+        puerto1.apilar(c2);
+        puerto1.apilar(c3);
         System.out.println(hub1.toString());
+
+        for(int i=0; i < 85; i++){
+            puerto1.apilar(c1);
+        }
+        for(int i= 0; i < 6; i++){
+            puerto1.apilar(c2);
+        }
+        System.out.println(hub1.toString());
+        System.out.println(puerto1.getEspacio(0));
 
         System.out.println("Introduce el id del contenedor que desees");
         int numID2 = sc.nextInt();
         System.out.println(hub1.mostrarDatos(numID2));
     }
 }
+
