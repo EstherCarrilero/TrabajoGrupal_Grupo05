@@ -4,11 +4,9 @@ import java.util.Objects;
 
 public class Hub {
     private Contenedor[][] M;
-    private int numHub;
 
-    Hub(int numHub) {
+    Hub() {
         M = new Contenedor[10][12];
-        this.numHub = numHub;
     }
 
     public Contenedor getM(int i, int j) {
@@ -17,13 +15,6 @@ public class Hub {
 
     public void setM(int i, int j, Contenedor c) {
         this.M[i][j] = c;
-    }
-
-    public int getNumHub() {
-        return numHub;
-    }
-    public void setNumHub(int numHub) {
-        this.numHub = numHub;
     }
 
     public String toString() {
@@ -47,7 +38,7 @@ public class Hub {
         }
         return cadena;
     }
-    public Contenedor[][] apilar(Contenedor C){
+    public boolean apilar(Contenedor C){
         int miprioridad=C.getPrioridad();
         //primera col de prioridad 1, segunda columna prioridad 2, el resto del tres
         if((miprioridad==1 && M[0][0]==null)||(miprioridad==2 && M[0][1]==null) || miprioridad==3) {
@@ -56,7 +47,7 @@ public class Hub {
                 for (int i=9;i>=0;i--) {
                     if (M[i][0] == null) {
                         M[i][0] = C;
-                        break;
+                        return true;
                     }
                 }
             }else if(miprioridad==2){
@@ -64,7 +55,7 @@ public class Hub {
                 for (int i=9;i>=0;i--) {
                     if (M[i][1] == null) {
                         M[i][1] = C;
-                        break;
+                        return true;
                     }
                 }
             }else{
@@ -72,35 +63,34 @@ public class Hub {
                     for(int j=9;j>=0;j--) {
                         if (M[j][i] == null) {
                             M[j][i] = C;
-                            i = 11;
-                            break;
+                            return true;
                         }
                     }
                 }
             }
         }
-        return M;
+        return false;
     }
-    public Contenedor[][] desapilar(int columna) {
+    public boolean desapilar(int columna) {
         for(int i = 0; i < 10; i++){
             if(M[i][columna] != null){
                 M[i][columna] = null;
-                break;
+                return true;
             }
         }
-        return M;
+        return false;
     }
-    public String mostrarDatos(int numID){
+    public Contenedor mostrarDatos(int numID){
         for(int i=0; i<10; i++){
             for(int j=0; j<12; j++){
                 if(M[i][j]!=null){
                     if(M[i][j].getId()==numID){
-                        return (" ID del contenedor: "+M[i][j].getId()+"\n Peso del contenedor:"+M[i][j].getPeso()+"\n Pais del contenedor:"+M[i][j].getPais()+"\n Inspeccionado en aduanas:"+M[i][j].getInspeccionado()+"\n Prioridad:"+M[i][j].getPrioridad()+"\n Descripcion del contenedor:"+M[i][j].getDescripcion()+"\n Empresa remitente:"+M[i][j].getEmpresaRemitente()+"\n Empresa receptora:"+M[i][j].getEmpresaReceptora());
+                        return M[i][j];
                     }
                 }
             }
         }
-        return "Este contenedor no se encuentra en el Hub";
+        return null;
     }
 
     public int cont_pais(String pais){
