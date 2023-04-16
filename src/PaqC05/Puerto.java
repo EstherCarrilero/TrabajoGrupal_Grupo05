@@ -27,28 +27,28 @@ public class Puerto{
         this.espacio[numEspacio] = bool;
     }
 
-    public int apilar(Contenedor C){
+    public boolean apilar(Contenedor C){
         for(int k = 0; k < P.length; k++){
             boolean resultado = P[k].apilar(C);
             if(resultado) {
                 if ((P[k].getM(0, 0) != null) && (P[k].getM(0, 1) != null) && (P[k].getM(0, 11) != null)) {
                     espacio[k] = true;
                 }
-                return k;
+                return true;
             }
         }
-        return -1;
+        return false;
     }
 
-    public int desapilar(int columna) {
+    public boolean desapilar(int columna) {
         for(int k = 0; k < P.length; k++){
             boolean resultado = P[k].desapilar(columna);
             if(resultado){
                 espacio[k] = false;
-                return k;
+                return true;
             }
         }
-        return -1;
+        return false;
     }
 
     public int totalPaisPuerto(String pais){
