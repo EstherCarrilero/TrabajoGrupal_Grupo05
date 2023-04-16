@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Hub {
     private Contenedor[][] M;
 
-    Hub() {
+    public Hub() {
         M = new Contenedor[10][12];
     }
 

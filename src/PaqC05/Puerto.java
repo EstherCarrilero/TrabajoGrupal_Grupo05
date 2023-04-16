@@ -4,7 +4,7 @@ public class Puerto{
     private Hub[] P;
     private boolean[] espacio;
 
-    Puerto(){
+    public Puerto(){
         P = new Hub [3];
         espacio = new boolean [3];
         P[0] = new Hub();

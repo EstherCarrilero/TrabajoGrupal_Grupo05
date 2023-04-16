@@ -10,7 +10,7 @@ public class Contenedor {
     private String empresaRemitente;
     private String empresaReceptora;
 
-    Contenedor (int id, int peso, String pais, boolean inspeccionado, int prioridad, String descripcion, String empresaRemitente, String empresaReceptora){
+    public Contenedor (int id, int peso, String pais, boolean inspeccionado, int prioridad, String descripcion, String empresaRemitente, String empresaReceptora){
         this.id = id;
         this.peso = peso;
         this.pais = pais;
