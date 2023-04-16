@@ -1,6 +1,8 @@
 package PaqC05;
 
-public class Contenedor {
+import java.io.Serializable;
+
+public class Contenedor implements Serializable {
     private int id;
     private int peso;
     private String pais;

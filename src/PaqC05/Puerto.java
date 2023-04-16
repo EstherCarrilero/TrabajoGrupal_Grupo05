@@ -1,6 +1,8 @@
 package PaqC05;
 
-public class Puerto{
+import java.io.Serializable;
+
+public class Puerto implements Serializable {
     private Hub[] P;
     private boolean[] espacio;
 
